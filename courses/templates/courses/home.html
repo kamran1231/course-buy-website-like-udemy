@@ -1,0 +1,74 @@
+{% extends "courses/base.html" %}
+{% load course_custom_tags %}
+
+
+{% block content %}
+{{request.user}}
+<style>
+    .discount {
+        color: green;
+        font: size 2px;
+
+    }
+
+    .price {
+        color: red;
+        font: size 20px;
+
+    }
+</style>
+
+<div class="container-fluid">
+
+    <div class="row">
+        {% for course in courses %}
+
+        <div class="col mx-auto">
+            <div class="card mx-auto mt-2" style="width: 18rem;">
+                <img src="{{course.thumbnail.url}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{course.name}}</h5>
+                    <p class="card-text">
+                    <div class="discount">Save {{course.discount}}%</div>
+                    <p class="price">
+                        <del>{{course.price|rupee}}</del>
+                        &nbsp;
+                        <span style="color:rgb(4, 0, 255)">{% cal_sellprice course.price course.discount as value %}
+                            {{value|rupee}}</span>
+                    </p>
+                    </p>
+
+                </div>
+                
+                <div class="card-footer p-0">
+                    {% is_enrolled request course as enrolled%}
+                    {% if enrolled %}
+                    <div class="col-md-auto">
+                        <a href="/course/{{course.slug}}" class="btn btn-outline-primary btn-block d-grid gap-2 ">Start Course</a>
+                    </div>
+
+                    {%else%}
+                    <div class="row  no-gutters">
+                        <div class="col border-right">
+                            <a href="/check-out/{{course.slug}}" class="btn btn-outline-success btn-block">Enroll
+                                Now</a>
+                        </div>
+                        
+                        <div class="col-md-auto">
+                            <a href="/course/{{course.slug}}" class="btn btn-outline-primary btn-block">Show More</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+
+        </div>
+
+        {% endfor %}
+    </div>
+
+</div>
+
+
+{% endblock %}

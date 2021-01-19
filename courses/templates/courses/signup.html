@@ -1,0 +1,25 @@
+
+
+{% extends "courses/base.html" %}
+{% load course_custom_tags %}
+
+
+{% block content %}
+
+
+
+<div class="container-fluid">
+    <h1 class="display-1">Signup html</h1>
+
+    <div>
+        <form action="/signup" method="POST">
+            {% csrf_token %}
+            {{form.as_ul}}
+            <input type="submit" value="register">
+        </form>
+        
+    </div>
+
+</div>
+
+{% endblock %}

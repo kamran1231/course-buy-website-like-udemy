@@ -1,0 +1,40 @@
+
+
+
+.card-title {
+    color: green;
+    font: size 2px;
+
+}
+
+.card-text {
+    color: red;
+    font: size 20px;
+
+}
+
+#video_list {
+    overflow-y: scroll ;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #6c8671; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(171, 175, 138); 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(158, 125, 65); 
+
+  }
+
